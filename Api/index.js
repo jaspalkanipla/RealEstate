@@ -1,10 +1,11 @@
 import express from "express";
-import connectDB from "./connectDB.js";
+import connectDB from "./database/connectDB.js";
 import dotenv from "dotenv";
 import userRouter from './routes/user.router.js';
 import authRouter from './routes/auth.router.js';
 const app = express();
 dotenv.config();
+
 app.use(express.json());
 connectDB()
 app.use("/api/user",userRouter)
