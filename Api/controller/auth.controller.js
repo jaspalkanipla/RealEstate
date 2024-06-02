@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import { User } from "../models/user.model.js";
-export const signup = async (req, res) => {
+import { errorhandler } from "../utils/errors.js";
+export const signup = async (req, res,next) => {
   try {
     const data = User(req.body);
     data.password = bcrypt.hashSync(req.body.password, 10);
@@ -12,6 +13,8 @@ export const signup = async (req, res) => {
     }
 } catch (error) {
     console.log(error);
-    res.status(500).send({message:error.message});
+    next(error)
+    // next(errorhandler("520","absdbfhdsfb"))
+    // res.status(500).send({message:error.message});
   }
 };
