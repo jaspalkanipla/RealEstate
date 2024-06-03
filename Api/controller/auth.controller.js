@@ -7,7 +7,7 @@ export const signup = async (req, res,next) => {
     data.password = bcrypt.hashSync(req.body.password, 10);
     const result = await data.save();
     if (result) {
-      res.status(201).send({ data: result });
+      res.status(201).send({ data: result ,message:"user created successfully"});
     } else {
       res.status(400).send(result);
     }
